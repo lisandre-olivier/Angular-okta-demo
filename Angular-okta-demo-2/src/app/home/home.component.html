@@ -1,0 +1,17 @@
+<div class="container">
+  <div *ngIf="!isAuthenticated">
+    <h1>Application de demo 2 d'Okta avec Angular</h1>
+    <h2>Page d'acceuil pour notre application</h2>
+      <p>Lorsque vous cliquerez sur le button login, vous serez redirigé vers la page de connexion de 
+        votre organisation Okta.</p>
+      <br><br>
+    <button id="login-button" class="ui primary button" role="button" (click)="login()">Login</button>
+  </div>
+
+  <div *ngIf="isAuthenticated && userName">
+    <h1>Welcome back, {{ userName }}!</h1>
+      <p>Vous avez réussit à vous connecter avec votre organisation Okta. Vos ID Token et Access Token ont été enregistrer en session
+        Rendez-vous sur la page <a href="/profile">profil</a> pour voir les informations dans votre ID Token.
+    </p>
+  </div>
+</div>
