@@ -10,8 +10,28 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-export const environment = {
-  production: true,
-  ISSUER:'https://dev-588283.okta.com//oauth2/default',
-  CLIENT_ID:'0oaogvdrbEck4f6894x6'
-};
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { HomeComponent } from './home.component';
+
+describe('HomeComponent', () => {
+  let component: HomeComponent;
+  let fixture: ComponentFixture<HomeComponent>;
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ HomeComponent ]
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(HomeComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

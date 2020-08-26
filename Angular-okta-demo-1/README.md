@@ -1,6 +1,6 @@
-# Okta Angular + Custom Login Example
+# Okta Angular + Okta Hosted Login Example
 
-This example shows you how to use the [Okta Angular Library][] to login a user to an Angular application.  The login is achieved with the [Okta Sign In Widget][], which gives you more control to customize the login experience within your app.
+This example shows you how to use the [Okta Angular Library][] to login a user to a Angular application.  The login is achieved through the [PKCE Flow][], where the user is redirected to the Okta-Hosted login page.  After the user authenticates they are redirected back to the application with an ID Token and Access Token.
 
 This example is built with [Angular CLI][].
 
@@ -18,7 +18,7 @@ To run this application, you first need to clone this repo and then enter into t
 
 ```bash
 git clone https://github.com/okta/samples-js-angular.git
-cd samples-js-angular/custom-login
+cd samples-js-angular/okta-hosted-login
 ```
 
 Then install dependencies:
@@ -45,24 +45,23 @@ Now start the app server:
 ng serve
 ```
 
->  **Note:** If you're on a windows machine, you might get an error similar to
-> `ng serve contains error Unknown browser query basedir=$(dirname "$(echo "$0" | sed -e 's,\\,/,g')")`
->
-> It's a [known issue](https://github.com/angular/angular-cli/issues/5075) on windows due to one of the dependencies we use. To resolve the issue, search for browserslist and browserslist.cmd files in your node_modules. Delete both the files and start the app server again.
-
-
 Now navigate to http://localhost:8080 in your browser.
 
-If you see a home page that prompts you to login, then things are working!  Clicking the **Log in** button will render a custom login page component that uses the Okta Sign-In Widget to perform authentication.
+If you see a home page that prompts you to login, then things are working!  Clicking the **Log in** button will redirect you to the Okta hosted sign-in page.
 
 You can login with the same account that you created when signing up for your Developer Org, or you can use a known username and password from your Okta Directory.
 
-> **Note:** If you are currently using your Developer Console, you already have a Single Sign-On (SSO) session for your Org.  You will be automatically logged into your application as the same user that is using the Developer Console.  You may want to use an incognito tab to test the flow from a blank slate.
+**Note:** If you are currently using your Developer Console, you already have a Single Sign-On (SSO) session for your Org.  You will be automatically logged into your application as the same user that is using the Developer Console.  You may want to use an incognito tab to test the flow from a blank slate.
 
 
 ## Integrating The Resource Server
 
-This sample contains the same "Messages" page that is included in the [Okta Hosted Login](/okta-hosted-login) sample, please refer to that sample for instructions on setting up the resource server.
+If you were able to successfully login in the previous section you can continue with the resource server example.  Please download and run one of these sample applications in another terminal:
+
+* [Node/Express Resource Server Example](https://github.com/okta/samples-nodejs-express-4/tree/master/resource-server)
+* [Java/Spring MVC Resource Server Example](https://github.com/okta/samples-java-spring-mvc/tree/master/resource-server)
+
+Once you have the resource server running (it will run on port 8000) you can visit the `/messages` page within the Angular application to see the authentication flow.  The Angular application will use its stored access token to authenticate itself with the resource server, you will see this as the `Authorization: Bearer <access_token>` header on the request if you inspect the network traffic in the browser.
 
 [Angular CLI]: https://cli.angular.io/
 [Okta Angular Library]: https://github.com/okta/okta-oidc-js/tree/master/packages/okta-angular
