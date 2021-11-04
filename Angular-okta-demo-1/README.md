@@ -25,6 +25,7 @@ Then install dependencies:
 
 ```bash
 npm install
+npm install -g @angular/cli
 ```
 
 Now you need to gather the following information from the Okta Developer Console:
